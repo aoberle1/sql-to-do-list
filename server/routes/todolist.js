@@ -36,5 +36,20 @@ router.post('/', (req, res) => {
             })
 });
 
+router.delete('/:id', (req, res) => {
+    let idToDelete = req.params.id;
+    let queryText = 'DELETE FROM "todolist" WHERE "id"=$1';
+
+    pool.query(queryText, [idToDelete])
+    .then(result => {
+        console.log('task deleted', result.rows);
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        console.log('Error making delete query', error);
+        res.sendStatus(500);
+    })
+})
+
 
 module.exports = router;

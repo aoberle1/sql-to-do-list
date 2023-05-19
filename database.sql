@@ -8,4 +8,8 @@ CREATE TABLE "todolist" (
  INSERT INTO "todolist" ("todo")
  	VALUES ('Take a deep breath');
 
+-- SELECT ALL FROM TO-DO LIST
+SELECT * FROM "todolist";
 
+-- TESTING DELETE FOR ROUTER
+DELETE FROM "todolist" WHERE "id"=4;
