@@ -4,6 +4,8 @@ function onReady(){
     console.log( 'js is working' );
     $('#submit-button').on('click', postTask)
     $('#to-do-list').on('click', '.delete-button', deleteTask)
+    $('#to-do-list').on('click', '.update-button', isComplete)
+
     getList();
 }
 
@@ -69,3 +71,26 @@ function deleteTask() {
     })
     
 };
+
+function isComplete() {
+    console.log( 'complete clicked')
+    let idToUpdate = $(this).closest('tr').data('id');
+    let complete = 'no';
+    console.log('idToUpdate',idToUpdate, complete);
+
+ if ( complete === 'no' ) {
+     console.log('idTOUpdate no', idToUpdate )
+     $.ajax({
+         method: 'PUT',
+         url: `/todo/${idToUpdate}`,
+         data: { // data should be an object
+             complete: 'no',
+         }
+     }).then(function(response){
+         console.log(response)
+         getList();
+     }).catch(function(err){
+         console.log(err)
+     })
+ }
+}

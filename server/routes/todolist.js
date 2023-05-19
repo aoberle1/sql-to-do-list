@@ -52,5 +52,31 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+router.put('/:id', (req, res) => {
+    console.log( 'got to put')
+    // res.send('WE DID IT')
+
+    let idToUpdate = req.params.id;
+    let complete = req.body.complete
+
+    let queryText = '';
+
+    if (complete === 'no' ){
+        queryText = `UPDATE "todolist" 
+        SET "complete" = 'yes'
+        WHERE "id" = $1;`
+    }
+
+    pool.query(queryText, [idToUpdate])
+    .then(result => {
+        console.log('to-do list UPDATED', result.rows);
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        console.log('Error making PUT query', error);
+        res.sendStatus(500);
+    })
+})
+
 
 module.exports = router;
