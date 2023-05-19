@@ -38,6 +38,7 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     let idToDelete = req.params.id;
+    console.log(idToDelete);
     let queryText = 'DELETE FROM "todolist" WHERE "id"=$1';
 
     pool.query(queryText, [idToDelete])

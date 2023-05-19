@@ -56,13 +56,14 @@ function postTask() {
 }
 
 function deleteTask() {
-    const idToDelete = $(this).closest('div').data('id');
-
+    const idToDelete = $(this).closest('tr').data('id');
+    console.log(idToDelete);
     $.ajax({
         type: 'DELETE',
-        URL: `/todo/${idToDelete}`
+        url: `/todo/${idToDelete}`
     }).then(function(response) {
-        getList()
+        console.log(response);
+        getList();
     }).catch(function(error) {
         console.log('Error with delete task:', error);
     })
