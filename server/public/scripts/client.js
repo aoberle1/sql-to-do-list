@@ -14,7 +14,6 @@ function getList() {
         method: 'GET',
         url: '/todo'
     }).then(function(response) {
-        const tasks = response;
         renderToDom(response);
     }).catch(function (error) {
         console.log('error in artist get', error);
@@ -23,10 +22,13 @@ function getList() {
 
 function renderToDom( tasks ) {
     $('#to-do-list').empty();
-
+    // listener to check value of complete here
+    // let complete = task.complete
     for(let task of tasks) {
+        // let complete = task.complete
+        console.log('is the task complete:', task.complete)
         $('#to-do-list').append(`
-            <tr data-id=${task.id}>
+            <tr class='body-row' data-id=${task.id}>
                 <td>${task.todo}</td>
                 <td>${task.complete}</td>
                 <td><button class='delete-button'>Delete</button></td>
@@ -34,6 +36,9 @@ function renderToDom( tasks ) {
             </tr>
             `
         );
+        if(task.complete === 'yes'){
+            $('.body-row').css("background-color", "yellow");
+        }
     }
 }
 
@@ -77,9 +82,10 @@ function isComplete() {
     let idToUpdate = $(this).closest('tr').data('id');
     let complete = 'no';
     console.log('idToUpdate',idToUpdate, complete);
+    // $(this).closest('tr').css("background-color", "yellow");
 
  if ( complete === 'no' ) {
-     console.log('idTOUpdate no', idToUpdate )
+    //  console.log('idTOUpdate no', idToUpdate )
      $.ajax({
          method: 'PUT',
          url: `/todo/${idToUpdate}`,
