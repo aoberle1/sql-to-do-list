@@ -2,6 +2,7 @@ $(document).ready(onReady);
 
 function onReady(){
     console.log( 'js is working' );
+    $('#submit-button').on('click', postTask)
     getList();
 }
 
@@ -30,4 +31,25 @@ function renderToDom( tasks ) {
             </div>`
         );
     }
+}
+
+function postTask() {
+    const taskToSend = {
+        todo: $('#task-input').val(), 
+    };
+
+    console.log('Adding task', taskToSend);
+
+    // Send the new task to the server as data
+    $.ajax({
+        method: 'POST',
+        url: '/todo',
+        data: taskToSend
+    }).then(function(response) {
+        console.log(response);
+        getList();
+    }).catch(function(error) {
+        console.log('error in artist post', error); 
+        alert('Error adding task. Please try again later.')       
+    });
 }
