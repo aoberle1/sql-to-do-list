@@ -28,7 +28,7 @@ function renderToDom( tasks ) {
         // let complete = task.complete
         console.log('is the task complete:', task.complete)
         $('#to-do-list').append(`
-            <tr class='body-row' data-id=${task.id}>
+            <tr class='${task.complete}' data-id=${task.id}>
                 <td>${task.todo}</td>
                 <td>${task.complete}</td>
                 <td><button class='delete-button'>Delete</button></td>
@@ -36,11 +36,10 @@ function renderToDom( tasks ) {
             </tr>
             `
         );
-        if(task.complete === 'yes'){
-            $('.body-row').css("background-color", "yellow");
-        }
     }
-}
+    $('.yes').css("background-color", "yellow");
+ }
+
 
 function postTask() {
     const taskToSend = {
