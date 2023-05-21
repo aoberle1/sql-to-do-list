@@ -1,9 +1,55 @@
 body {
-    font-family: 'Times New Roman', Times, serif;
-    background-color: salmon;
+    display: block;
+    margin: 0px;
+}
+header {
+    background-color: rgb(0, 123, 255);
+    display: flex;
+    /* align-content: center; */
+    /* flex-direction: column; */
+    align-items: center;
+}
+#addKoala {
+    margin: 1%;
+}
+section {
+    margin: 1%;
 }
 
-/* input{
-    size: 75;
-} */
+h1 {
+    font-family: Helvetica;
+    display: flex; 
+    flex-direction: column;
+}
+
+h3 {
+    font-family: Helvetica;
+    display: flex;
+    flex-direction: column;
+}
+img {
+    padding: 1%;
+    width: 15%;
+}
+h2 {
+    font-family: Helvetica;
+
+}
+table {
+    border-collapse: collapse;
+    border: 1px solid grey;
+
+}
+
+th {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid;
+}
+
+td {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid;
+}
 
