@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
     // get all song data
-    let queryText = 'SELECT * FROM "todolist";';
+    let queryText = 'SELECT * FROM "todolist" ORDER BY "complete" ASC;';
     pool.query(queryText)
         .then(result => {
             res.send(result.rows); 
