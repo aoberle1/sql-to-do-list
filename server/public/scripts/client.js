@@ -9,6 +9,7 @@ function onReady(){
     getList();
 }
 
+// creating get function
 function getList() {
     $.ajax({
         method: 'GET',
@@ -20,13 +21,13 @@ function getList() {
     });
 }
 
+// creating render function
 function renderToDom( tasks ) {
     $('#to-do-list').empty();
-    // listener to check value of complete here
-    // let complete = task.complete
+    // looping through tasks - will be response from server containing database info
     for(let task of tasks) {
-        // let complete = task.complete
         console.log('is the task complete:', task.complete)
+        // tr class is either yes/no depending on value of task.complete
         $('#to-do-list').append(`
             <tr class='${task.complete}' data-id=${task.id}>
                 <td>${task.todo}</td>
@@ -37,16 +38,17 @@ function renderToDom( tasks ) {
             `
         );
     }
+    // if tr class in append above is yes change it's background color to yellow
     $('.yes').css("background-color", "yellow");
  }
 
-
+// creating post function
 function postTask() {
+    // saving value of task input
     const taskToSend = {
         todo: $('#task-input').val(), 
     };
     console.log('Adding task', taskToSend);
-
     // Send the new task to the server as data
     $.ajax({
         method: 'POST',
@@ -61,7 +63,9 @@ function postTask() {
     });
 }
 
+// creating delete function
 function deleteTask() {
+    // targeting the parent row of the td containing the delete button - grabbing it's id - same as database id
     const idToDelete = $(this).closest('tr').data('id');
     console.log(idToDelete);
     $.ajax({
@@ -76,14 +80,15 @@ function deleteTask() {
     
 };
 
+// creating put function
 function isComplete() {
     console.log( 'complete clicked')
     let idToUpdate = $(this).closest('tr').data('id');
+    // default value of complete is no - tasks are not complete by default
     let complete = 'no';
     console.log('idToUpdate',idToUpdate, complete);
 
  if ( complete === 'no' ) {
-    //  console.log('idTOUpdate no', idToUpdate )
      $.ajax({
          method: 'PUT',
          url: `/todo/${idToUpdate}`,

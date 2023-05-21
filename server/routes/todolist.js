@@ -27,7 +27,6 @@ router.post('/', (req, res) => {
     const values = [newTask.todo];
     pool.query(queryText, values) // pass queryText and array of values
         .then(result => {
-             // status code for created
             res.sendStatus(201);
             })
             .catch(error => {
@@ -54,7 +53,6 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
     console.log( 'got to put')
-    // res.send('WE DID IT')
 
     let idToUpdate = req.params.id;
     let complete = req.body.complete
