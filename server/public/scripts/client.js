@@ -31,8 +31,8 @@ function renderToDom( tasks ) {
             <tr class='${task.complete}' data-id=${task.id}>
                 <td>${task.todo}</td>
                 <td>${task.complete}</td>
-                <td><button class='delete-button'>Delete</button></td>
-                <td><button class='update-button'>Finished?</button></td>
+                <td><button class='delete-button btn btn-danger'>Delete</button></td>
+                <td><button class='update-button btn btn-warning'>Finished?</button></td>
             </tr>
             `
         );
@@ -81,7 +81,6 @@ function isComplete() {
     let idToUpdate = $(this).closest('tr').data('id');
     let complete = 'no';
     console.log('idToUpdate',idToUpdate, complete);
-    // $(this).closest('tr').css("background-color", "yellow");
 
  if ( complete === 'no' ) {
     //  console.log('idTOUpdate no', idToUpdate )
